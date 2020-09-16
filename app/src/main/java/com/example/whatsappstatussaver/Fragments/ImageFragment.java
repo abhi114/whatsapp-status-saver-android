@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -90,6 +91,7 @@ public class ImageFragment extends Fragment {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
+                                progressBar.setVisibility(View.GONE);
                                 imageAdapter = new ImageAdapter(getContext(),imageModelArrayList,ImageFragment.this);
                                 recyclerView.setAdapter(imageAdapter);
                                 imageAdapter.notifyDataSetChanged();
@@ -97,10 +99,18 @@ public class ImageFragment extends Fragment {
                         });
 
 
+                    }else {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressBar.setVisibility(View.GONE);
+                                Toast.makeText(getContext(),"dir not exist",Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
 
                 }
-            });
+            }).start();
         }
     }
 
