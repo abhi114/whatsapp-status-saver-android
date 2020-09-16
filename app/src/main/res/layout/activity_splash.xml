@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Whatsapp Status Saver"
+        android:text="Whatsapp Status Saver`by abhishek nigam"
         android:textSize="@dimen/_20sdp"
         android:textColor="#fff"/>
 

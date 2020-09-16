@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.whatsappstatussaver.Adapters.ImageAdapter;
 import com.example.whatsappstatussaver.Models.StatusModel;
 import com.example.whatsappstatussaver.R;
 import com.example.whatsappstatussaver.Utils.MyConstants;
@@ -38,6 +39,7 @@ public class ImageFragment extends Fragment {
     ProgressBar progressBar;
 
     ArrayList<StatusModel> imageModelArrayList;
+    ImageAdapter imageAdapter;
 
 
     @Nullable
@@ -88,7 +90,9 @@ public class ImageFragment extends Fragment {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-
+                                imageAdapter = new ImageAdapter(getContext(),imageModelArrayList,ImageFragment.this);
+                                recyclerView.setAdapter(imageAdapter);
+                                imageAdapter.notifyDataSetChanged();
                             }
                         });
 
