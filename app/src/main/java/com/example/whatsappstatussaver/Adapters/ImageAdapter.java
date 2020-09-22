@@ -15,6 +15,7 @@ import com.example.whatsappstatussaver.Fragments.ImageFragment;
 import com.example.whatsappstatussaver.Models.StatusModel;
 import com.example.whatsappstatussaver.R;
 
+import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -60,7 +61,20 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+            imageButtonDownload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    StatusModel statusModel = imageList.get(getAdapterPosition());
 
+                    if(statusModel!=null){
+                        try {
+                            imageFragment.downloadImage(statusModel);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
         }
     }
 }
