@@ -15,6 +15,7 @@ import com.example.whatsappstatussaver.Fragments.VideoFragment;
 import com.example.whatsappstatussaver.Models.StatusModel;
 import com.example.whatsappstatussaver.R;
 
+import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -63,6 +64,21 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         public VideoViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+            imageButtonDownload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    StatusModel statusModel = videosList.get(getAdapterPosition());
+
+                    if(statusModel != null){
+                        try {
+                             videoFragment.downloadVideo(statusModel);
+                        }catch (IOException e){
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+            });
         }
     }
 }
